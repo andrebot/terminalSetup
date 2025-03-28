@@ -71,6 +71,28 @@ else
   echo "💡 Copy it to GitHub/GitLab/Bitbucket."
 fi
 
+echo "📦 Installing NVM (Node Version Manager)..."
+export NVM_DIR="$HOME/.nvm"
+
+if [ ! -d "$NVM_DIR" ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+fi
+
+# Add to .zshrc
+cat << 'EOF' >> ~/.zshrc
+
+# NVM configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+EOF
+
+# Load NVM now so we can use it immediately
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+echo "⬇️ Installing latest LTS version of Node.js..."
+nvm install --lts
+
 echo "⚡ Setting Zsh as default shell..."
 chsh -s "$(which zsh)"
 
