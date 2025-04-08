@@ -113,13 +113,6 @@ EOF
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-if ! nvm ls | grep -q 'lts/*'; then
-  echo "⬇️ Installing latest LTS version of Node.js..."
-  nvm install --lts
-else
-  echo "⬇️ Node.js LTS already installed. Skipping."
-fi
-
 echo "⚡ Setting Zsh as default shell..."
 if [ "$SHELL" != "$(which zsh)" ]; then
   chsh -s "$(which zsh)"
